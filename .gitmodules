@@ -1,0 +1,6 @@
+[submodule "content"]
+	path = content
+	url = https://github.com/xyy94813/content.git
+[submodule "translated-content"]
+	path = translated-content
+	url = https://github.com/xyy94813/translated-content.git

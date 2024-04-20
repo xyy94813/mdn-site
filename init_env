@@ -1,0 +1,9 @@
+#!/bin/bash
+cat >./content/.env <<EOF
+# see: https://github.com/mdn/content/blob/main/CONTRIBUTING.md#running-the-project
+EDITOR=code
+# see: https://github.com/mdn/translated-content/blob/main/CONTRIBUTING.md#link-translated-content
+CONTENT_TRANSLATED_ROOT=../translated-content/files
+EOF
+
+echo "Successfully created file ./content/.env and init necessary env variables"

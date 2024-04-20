@@ -1,0 +1,13 @@
+#!/bin/bash
+
+FILES_PATH=$1
+
+REALTIVE_PATH=$(sed 's#^\(./\)\{0,1\}content/files/en-us/##' <<< "$FILES_PATH")
+
+LANG=${2:-"zh-cn"}
+
+NEW_FILES_PATHS="translated-content/files/$LANG/$REALTIVE_PATH"
+
+cp -R $FILES_PATH $NEW_FILES_PATHS
+
+echo "Successfully copied to $NEW_FILES_PATHS"
