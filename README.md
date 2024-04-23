@@ -39,6 +39,22 @@ bash cp_files ./content/files/en-us/web/api/audio_output_devices_api
 bash cp_files ./content/files/en-us/web/api/audio_output_devices_api fr
 ```
 
+### Scripts: add_l10n
+
+Add origin file git commit hash to translated file.
+
+> Note: it will add commit hash again if you run many times!!!
+
+```sh
+bash add_l10n TRANSLATED_DOC_DIR_OR_FILE
+```
+
+Example:
+
+```sh
+bash add_l10n ./translated-content/files/zh-cn/web/api/serviceworkerglobalscope/
+```
+
 ## LICENSE
 
 [MIT](./LICENSE) RoXoM xyy94813@sina.com

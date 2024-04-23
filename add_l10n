@@ -1,0 +1,71 @@
+#!/bin/bash
+
+ORIGIN_DOCS_PATH="content"
+CUR_DIR=$(pwd)
+INPUT_DIR=$(echo $1 | sed 's#/$##')
+
+get_all_md_files() {
+    local files=()
+
+    traverse() {
+        local directory="$1"
+        for file in "$directory"/*; do
+            if [ -d "$file" ]; then
+                traverse "$file"
+            elif [ -f "$file" ] && [[ $file == *.md ]]; then
+                files+=("$file")
+            fi
+        done
+    }
+
+    traverse "$1"
+
+    echo ${files[@]}
+}
+
+get_origin_file_path() {
+    echo "$1" | sed "s#translated-content/files\/[^\/]*#$ORIGIN_DOCS_PATH/files\/en-us#"
+}
+
+get_origin_file_commit_hash() {
+    local translated_file=$1
+    local origin_file_path=$(get_origin_file_path $translated_file)
+    local origin_file_reltive_path_of_content=$(echo "$origin_file_path" | sed "s#^./$ORIGIN_DOCS_PATH#.#")
+    ## TODO: use map instead of cd
+    cd $CUR_DIR/$ORIGIN_DOCS_PATH
+    local commit_hash=$(git rev-list --max-count=1 HEAD $origin_file_reltive_path_of_content)
+    cd $CUR_DIR # back to pwd
+
+    echo $commit_hash
+}
+
+write_l10n_to_md() {
+    local md_file=$1
+    echo $md_file
+    local commitHash=$2
+    local insert_content="l10n:
+  commitHash: $commitHash"
+
+    # 使用 ed 在第二个 "---" 前插入内容
+    ed -s $md_file <<EOF
+/^---$/;/^---$/i
+$insert_content
+.
+w
+q
+EOF
+}
+
+wirte_commit_hash_to_file() {
+    local file=$1
+    local absolute_file_path=$(realpath $file)
+    local origin_file_commit_hash=$(get_origin_file_commit_hash $file)
+
+    write_l10n_to_md $absolute_file_path $origin_file_commit_hash
+}
+
+all_md_files=$(get_all_md_files "$INPUT_DIR")
+
+for file in $all_md_files; do
+    wirte_commit_hash_to_file $file
+done
