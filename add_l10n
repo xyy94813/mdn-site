@@ -44,7 +44,7 @@ write_l10n_to_md() {
     echo $md_file
     local commitHash=$2
     local insert_content="l10n:
-  commitHash: $commitHash"
+  sourceCommit: $commitHash"
 
     # 使用 ed 在第二个 "---" 前插入内容
     ed -s $md_file <<EOF
