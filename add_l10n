@@ -30,7 +30,7 @@ get_origin_file_path() {
 get_origin_file_commit_hash() {
     local translated_file=$1
     local origin_file_path=$(get_origin_file_path $translated_file)
-    local origin_file_reltive_path_of_content=$(echo "$origin_file_path" | sed "s#^./$ORIGIN_DOCS_PATH#.#")
+    local origin_file_reltive_path_of_content=$(echo "$origin_file_path" | sed "s#^\(./\)\{0,1\}$ORIGIN_DOCS_PATH#.#")
     ## TODO: use map instead of cd
     cd $CUR_DIR/$ORIGIN_DOCS_PATH
     local commit_hash=$(git rev-list --max-count=1 HEAD $origin_file_reltive_path_of_content)
