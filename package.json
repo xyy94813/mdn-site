@@ -1,0 +1,14 @@
+{
+  "name": "mdn-site",
+  "version": "1.0.0",
+  "description": "A repository for participating in MDN translation.",
+  "main": "index.js",
+  "scripts": {
+    "cp": "node scripts/copy.mjs"
+  },
+  "author": "roxom <xyy94813@sina.com>",
+  "license": "MIT",
+  "dependencies": {
+    "front-matter": "^4.0.2"
+  }
+}

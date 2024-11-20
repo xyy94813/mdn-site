@@ -21,22 +21,22 @@ Init the `.env` files for "mdn/content" rpeo.
 bash init_env
 ```
 
-### Scripts: cp_files
+### Scripts: cp
 
 Copy files quickly in root of this project
 
 ```sh
-bash cp_files ORIGIN_EN_CONTENT_SOURCE [LANG]
+npm run cp ORIGIN_EN_CONTENT_SOURCE [LANG]
 ```
 
 Example:
 
 ```sh
 # Will copy all files in `web/api/audio_output_devices_api` to `translated-content/files/zh-cn/web/api/audio_output_devices_api`
-bash cp_files ./content/files/en-us/web/api/audio_output_devices_api
+npm run cp content/files/en-us/web/api/css_counter_styles
 
-# You can pass the seccond args to select language.
-bash cp_files ./content/files/en-us/web/api/audio_output_devices_api fr
+# You can pass the second args to select language.
+npm run cp content/files/en-us/web/api/css_counter_styles fr
 ```
 
 ### Scripts: add_l10n
