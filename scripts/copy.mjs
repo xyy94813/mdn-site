@@ -58,8 +58,9 @@ const copyDoc = (originDocPath) => {
     });
     return;
   }
-  // fs.cpSync(originDocPath, translatedDocsPath)
-  fs.readFile(originDocPath, "utf-8", async (err, data) => {
+
+  fs.cpSync(originDocPath, translatedDocsPath) // for mk all parent dir
+  fs.readFile(translatedDocsPath, "utf-8", async (err, data) => {
     const curL10n = await getFileCommitHash(originDocPath);
     const originDocContent = fm(data);
     const translatedContent = `---
