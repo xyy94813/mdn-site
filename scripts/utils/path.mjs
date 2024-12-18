@@ -16,3 +16,9 @@ export const CONTENT_TRANSLATED_ROOT = path.resolve(TRANSLATED_DOCS_REPO_ROOT, '
 export const getDocRelativePath = (originDocPath) => path.relative(CONTENT_ROOT, originDocPath)
 
 export const getTranslatedDocPath = (originDocPath, lang) => path.resolve(CONTENT_TRANSLATED_ROOT, lang, getDocRelativePath(originDocPath))
+
+export const getOriginDocPath = (translatedDocPath) => {
+  let relativePath = path.relative(CONTENT_TRANSLATED_ROOT, translatedDocPath)
+  relativePath = relativePath.replace(/^[^/]*\//, '') // replace lang dir
+  return path.resolve(CONTENT_ROOT, relativePath)
+}

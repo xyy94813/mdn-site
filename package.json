@@ -4,7 +4,8 @@
   "description": "A repository for participating in MDN translation.",
   "main": "index.js",
   "scripts": {
-    "cp": "node scripts/copy.mjs"
+    "cp": "node scripts/copy.mjs",
+    "update:l10n": "node ./scripts/update-l10n.mjs"
   },
   "author": "roxom <xyy94813@sina.com>",
   "license": "MIT",

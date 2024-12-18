@@ -46,13 +46,13 @@ Add origin file git commit hash to translated file.
 > Note: it will add commit hash again if you run many times!!!
 
 ```sh
-bash add_l10n TRANSLATED_DOC_DIR_OR_FILE
+npm run update:l10n TRANSLATED_DOC_DIR_OR_FILE
 ```
 
 Example:
 
 ```sh
-bash add_l10n ./translated-content/files/zh-cn/web/api/serviceworkerglobalscope/
+npm run update:l10n ./translated-content/files/zh-cn/web/api/serviceworkerglobalscope/
 ```
 
 ## LICENSE
