@@ -4,12 +4,13 @@
   "description": "A repository for participating in MDN translation.",
   "main": "index.js",
   "scripts": {
-    "cp": "node scripts/copy.mjs",
-    "update:l10n": "node ./scripts/update-l10n.mjs"
+    "cp": "node scripts/cli.mjs copy",
+    "update:l10n": "node scripts/cli.mjs l10n"
   },
   "author": "roxom <xyy94813@sina.com>",
   "license": "MIT",
   "dependencies": {
+    "commander": "^13.1.0",
     "front-matter": "^4.0.2"
   }
 }

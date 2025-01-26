@@ -24,17 +24,16 @@ import {
 
 import { getFileCommitHash } from './utils/git.mjs'
 
-const inputTargetPath = process.argv[2];
-const targetPath = path.resolve(process.cwd(), inputTargetPath);
+const updateL10n = async (inputTargetPath) => {
+  const targetPath = path.resolve(process.cwd(), inputTargetPath);
 
-if (!targetPath.startsWith(CONTENT_TRANSLATED_ROOT))
-  throw new Error("Wrong origin docs path");
+  if (!targetPath.startsWith(CONTENT_TRANSLATED_ROOT))
+    throw new Error("Wrong origin docs path");
 
-// 遍历读取目录或文件
+  // 遍历读取目录或文件
 
-console.log("Start update l10n....");
+  console.log("Start update l10n....");
 
-const updateL10n = async () => {
   const originDocPath = getOriginDocPath(targetPath)
   const commitHash = await getFileCommitHash(originDocPath)
   fs.readFile(targetPath, "utf-8", async (err, data) => {
@@ -55,4 +54,4 @@ ${originDocContent.body}
   })
 }
 
-updateL10n()
+export default updateL10n
