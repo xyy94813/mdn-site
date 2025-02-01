@@ -5,6 +5,7 @@ import fm from "front-matter";
 
 import {
   CONTENT_ROOT,
+  CONTENT_TRANSLATED_ROOT,
   getDocRelativePath,
   getTranslatedDocPath,
 } from "./utils/path.mjs";
@@ -76,7 +77,7 @@ ${originDocContent.body}
         console.log(
           `"${getDocRelativePath(
             originDocPath
-          )}" has been copied to "translated/content/${targetLang}".`
+          )}" has been copied to "${CONTENT_TRANSLATED_ROOT}/${targetLang}".`
         );
       });
     });
