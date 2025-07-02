@@ -9,6 +9,7 @@ A repository for participating in MDN translation.
 - provide some scripts for translate work
   - init_env
   - cp_files
+  - add_l10n
   - ...others will todo
 
 ## Scripts
