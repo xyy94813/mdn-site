@@ -70,8 +70,8 @@ l10n:
   sourceCommit: ${curL10n}
 ---
 
-${originDocContent.body}
-`;
+${originDocContent.body}`;
+
       fs.writeFile(translatedDocsPath, translatedContent, (err) => {
         if (err) throw err;
         console.log(
