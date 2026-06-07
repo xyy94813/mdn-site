@@ -11,6 +11,7 @@ import {
 } from "./utils/path.mjs";
 
 import { getFileCommitHash } from "./utils/git.mjs";
+import translateHeading from "./utils/replace-glossary.mjs";
 
 const copy = (copiedContent, targetLang = "zh-cn") => {
   const targetPath = path.resolve(process.cwd(), copiedContent);
@@ -63,6 +64,8 @@ const copy = (copiedContent, targetLang = "zh-cn") => {
     fs.readFile(translatedDocsPath, "utf-8", async (err, data) => {
       const curL10n = await getFileCommitHash(originDocPath);
       const originDocContent = fm(data);
+      // translate heading and glossary term
+      const lightTranslatedContent = await translateHeading(originDocContent.body, targetLang).catch(() => originDocContent.body);
       const translatedContent = `---
 title: ${originDocContent.attributes.title}
 slug: ${originDocContent.attributes.slug}
@@ -70,7 +73,7 @@ l10n:
   sourceCommit: ${curL10n}
 ---
 
-${originDocContent.body}`;
+${lightTranslatedContent}`;
 
       fs.writeFile(translatedDocsPath, translatedContent, (err) => {
         if (err) throw err;
