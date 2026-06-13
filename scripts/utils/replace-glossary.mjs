@@ -69,7 +69,11 @@ const initializeGlossary = async (targetLang = 'zh-cn') => {
 
 const commonMdProcessor = unified()
   .use(remarkParse)
-  .use(remarkStringify)
+  .use(remarkStringify, {
+    bullet: '-',
+    fences: true,
+    listItemIndent: '1',
+  })
   .freeze();
 
 export async function replaceGlossaryTerms(mdContent, targetLang = 'zh-cn') {
