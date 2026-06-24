@@ -40,12 +40,9 @@ const initializeGlossary = async (targetLang = 'zh-cn') => {
   const glossaryAST = glossaryMdProcessor.parse(glossaryMD)
   // Process the AST to extract glossary terms and definitions
   // This is a simplified example - you would need to implement the actual parsing logic
-  const glossary = new Map();
-
-  // TODO: configure lang glossary, and support more language
-  if (targetLang === 'zh-cn') {
-    glossary.set('Value', '值')
-  }
+  const glossary = await import(`../../ext-glossary/${targetLang}.mjs`)
+    .then(module => new Map(Object.entries(module.default)))
+    .catch((err) => new Map())
 
   visit(glossaryAST, 'table', (node) => {
     node
