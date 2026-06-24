@@ -68,6 +68,7 @@ const copy = (copiedContent, targetLang = "zh-cn") => {
       const lightTranslatedContent = await translateHeading(originDocContent.body, targetLang).catch(() => originDocContent.body);
       const translatedContent = `---
 title: ${originDocContent.attributes.title}
+short-title: ${originDocContent.attributes['short-title']}
 slug: ${originDocContent.attributes.slug}
 l10n:
   sourceCommit: ${curL10n}
