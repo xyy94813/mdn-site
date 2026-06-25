@@ -69,7 +69,7 @@ const commonMdProcessor = unified()
   .use(remarkStringify, {
     bullet: '-',
     fences: true,
-    listItemIndent: '1',
+    listItemIndent: 'one',
   })
   .freeze();
 
